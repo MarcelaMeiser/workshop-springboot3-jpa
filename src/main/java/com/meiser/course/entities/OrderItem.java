@@ -3,6 +3,7 @@ package com.meiser.course.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.meiser.course.entities.pk.OrderItemPK;
 
 import jakarta.persistence.EmbeddedId;
@@ -21,16 +22,18 @@ public class OrderItem implements Serializable{
 	private Double price;
 	
 	public OrderItem() {
+		this.id = new OrderItemPK();
 	}
 
 	public OrderItem(Order order, Product product, Integer quantity, Double price) {
-		super();
+		this.id = new OrderItemPK();
 		id.setOrder(order);
 		id.setProduct(product);
 		this.quantity = quantity;
 		this.price = price;
 	}
 
+	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
 	}
