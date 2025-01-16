@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.validation.constraints.Pattern;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +24,8 @@ public class User implements Serializable{
 	private Long id;
 	private String name;
 	private String email;
+	
+	@Pattern(regexp = "\\d{9}", message = "Phone must have exactly 9 digits")
 	private String phone;
 	private String password;
 	
